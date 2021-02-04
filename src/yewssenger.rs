@@ -1,27 +1,20 @@
 use yew::prelude::{html, Component, ComponentLink, Html, ShouldRender};
 
-use crate::components::nav::Nav;
+use crate::router::YewssengerRouter;
 
-pub struct Yewssenger {
-  link: ComponentLink<Self>,
-}
+pub struct Yewssenger {}
 
-pub enum Msg {
-  None,
-}
+pub enum Msg {}
 
 impl Component for Yewssenger {
   type Message = Msg;
   type Properties = ();
 
-  fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-    Yewssenger { link }
+  fn create(_: Self::Properties, _: ComponentLink<Self>) -> Self {
+    Yewssenger {}
   }
 
-  fn update(&mut self, msg: Self::Message) -> ShouldRender {
-    match msg {
-      Msg::None => (),
-    }
+  fn update(&mut self, _: Self::Message) -> ShouldRender {
     true
   }
   fn change(&mut self, _: Self::Properties) -> ShouldRender {
@@ -31,10 +24,7 @@ impl Component for Yewssenger {
   fn view(&self) -> Html {
     html! {
       <main id="yewssenger">
-       <div class="flex h-screen">
-        <Nav/>
-        <section class="w-full">{"section"}</section>
-       </div>
+        <YewssengerRouter/>
       </main>
     }
   }

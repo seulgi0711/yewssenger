@@ -1,30 +1,23 @@
+use crate::components::icon::Icon;
+use crate::types::User;
 use yew::prelude::{html, Component, ComponentLink, Html, ShouldRender};
 use yew::Properties;
-
-use crate::types::User;
-
-pub struct ProfileImage {
-  link: ComponentLink<Self>,
-  user: User,
-}
 
 #[derive(Properties, Clone)]
 pub struct Props {
   pub user: User,
 }
 
-pub enum Msg {
-  None,
+pub struct UserIcon {
+  props: Props,
 }
 
-impl Component for ProfileImage {
-  type Message = Msg;
+impl Component for UserIcon {
+  type Message = ();
   type Properties = Props;
-  fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-    ProfileImage {
-      link,
-      user: props.user,
-    }
+
+  fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
+    Self { props }
   }
   fn update(&mut self, _: Self::Message) -> ShouldRender {
     todo!()
@@ -33,11 +26,10 @@ impl Component for ProfileImage {
     todo!()
   }
   fn view(&self) -> Html {
+    let User { icon, id, .. } = &self.props.user;
+
     html! {
-      <img
-        class="h-10 w-10 rounded-full"
-        src=&self.user.image
-      />
+      <Icon icon=format!("{}?{}", icon, id)/>
     }
   }
 }

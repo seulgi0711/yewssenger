@@ -1,22 +1,30 @@
 use yew::prelude::{html, Component, ComponentLink, Html, ShouldRender};
 
-pub struct Input {}
+use crate::components::nav::Nav;
+
+pub struct Home {}
 
 pub enum Msg {}
 
-impl Component for Input {
+impl Component for Home {
   type Message = Msg;
   type Properties = ();
   fn create(_: Self::Properties, _: ComponentLink<Self>) -> Self {
-    todo!()
+    log::info!("asdf");
+    Self {}
   }
   fn update(&mut self, _: Self::Message) -> ShouldRender {
-    todo!()
+    true
   }
   fn change(&mut self, _: Self::Properties) -> ShouldRender {
     todo!()
   }
   fn view(&self) -> Html {
-    html! {}
+    html! {
+      <div class="flex h-screen">
+        <Nav/>
+        <section class="w-full">{"section"}</section>
+      </div>
+    }
   }
 }

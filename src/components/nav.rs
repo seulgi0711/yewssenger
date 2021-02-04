@@ -1,42 +1,56 @@
+use crate::components::chat_icon::ChatIcon;
+use crate::components::user_icon::UserIcon;
 use yew::prelude::{html, Component, ComponentLink, Html, ShouldRender};
 
-use crate::components::profileImage::ProfileImage;
 use crate::types::User;
 use crate::types::{Chat, ChatType};
 
 pub struct Nav {
-  link: ComponentLink<Self>,
   user: User,
   chats: Vec<Chat>,
 }
 
-pub enum Msg {
-  None,
-}
+pub enum Msg {}
 
 impl Component for Nav {
   type Message = Msg;
   type Properties = ();
-  fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
+  fn create(_: Self::Properties, _: ComponentLink<Self>) -> Self {
     Nav {
-      link,
       user: User {
         id: String::from("#2339"),
         name: String::from("낙타"),
-        image: String::from("https://placeimg.com/40/40/puppy"),
+        icon: String::from("https://placeimg.com/40/40/puppy"),
       },
-      chats: vec![Chat {
-        id: String::from("chatId1"),
-        members: vec![String::from("member1"), String::from("member2")],
-        title: String::from("대화방 제목"),
-        r#type: ChatType::Direct,
-      }],
+      chats: vec![
+        Chat {
+          id: String::from("chatId1"),
+          icon: String::from("https://placeimg.com/40/40/puppy"),
+          members: vec![String::from("member1"), String::from("member2")],
+          title: String::from("대화방 제목"),
+          r#type: ChatType::Direct,
+        },
+        Chat {
+          id: String::from("chatId2"),
+          icon: String::from("https://placeimg.com/40/40/puppy"),
+          members: vec![String::from("member1"), String::from("member2")],
+          title: String::from("대화방 제목22"),
+          r#type: ChatType::Direct,
+        },
+        Chat {
+          id: String::from("chatId3"),
+          icon: String::from("https://placeimg.com/40/40/puppy"),
+          members: vec![String::from("member1"), String::from("member2")],
+          title: String::from("대화방 제목22"),
+          r#type: ChatType::Direct,
+        },
+      ],
     }
   }
-  fn update(&mut self, _: <Self as yew::Component>::Message) -> bool {
+  fn update(&mut self, _: <Self as yew::Component>::Message) -> ShouldRender {
     todo!()
   }
-  fn change(&mut self, _: <Self as yew::Component>::Properties) -> bool {
+  fn change(&mut self, _: <Self as yew::Component>::Properties) -> ShouldRender {
     todo!()
   }
   fn view(&self) -> yew::virtual_dom::VNode {
@@ -48,7 +62,7 @@ impl Component for Nav {
         <div class="flex-1 px-2">{for self.chats.iter().map(|chat| self.render_chat(&chat))}</div>
         <div class="flex-none">
           <div class="flex items-center w-full p-3 bg-gray-700">
-            <ProfileImage user=&self.user/>
+            <UserIcon user=&self.user/>
             <div class="flex flex-col pl-2">
               <div class="flex text-gray-50">{&self.user.name}</div>
               <div class="flex text-sm text-gray-100">{&self.user.id}</div>
@@ -63,9 +77,11 @@ impl Component for Nav {
 impl Nav {
   fn render_chat(&self, chat: &Chat) -> Html {
     html! {
-      <div class="">
-        <span>{"이미지"}</span>
-        <span>{&chat.title}</span>
+      <div class="flex items-center py-2">
+        <span>
+          <ChatIcon chat=chat/>
+        </span>
+        <span class="pl-2">{&chat.title}</span>
       </div>
     }
   }

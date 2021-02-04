@@ -1,3 +1,5 @@
+pub mod chat_icon;
+pub mod icon;
 pub mod input;
 pub mod nav;
-pub mod profileImage;
+pub mod user_icon;

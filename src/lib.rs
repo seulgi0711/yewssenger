@@ -4,6 +4,8 @@ use wasm_bindgen::prelude::*;
 use yew::prelude::App;
 
 mod components;
+mod pages;
+mod router;
 mod types;
 mod yewssenger;
 
