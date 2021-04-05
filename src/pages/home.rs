@@ -1,5 +1,6 @@
 use yew::prelude::{html, Component, ComponentLink, Html, ShouldRender};
 
+use crate::components::chat_room::ChatRoom;
 use crate::components::nav::Nav;
 
 pub struct Home {}
@@ -14,16 +15,18 @@ impl Component for Home {
     Self {}
   }
   fn update(&mut self, _: Self::Message) -> ShouldRender {
-    true
+    false
   }
   fn change(&mut self, _: Self::Properties) -> ShouldRender {
-    todo!()
+    false
   }
   fn view(&self) -> Html {
     html! {
       <div class="flex h-screen">
         <Nav/>
-        <section class="w-full">{"section"}</section>
+        <section class="w-full">
+          <ChatRoom/>
+        </section>
       </div>
     }
   }

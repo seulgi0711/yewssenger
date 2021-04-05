@@ -20,10 +20,10 @@ impl Component for YewssengerRouter {
     Self {}
   }
   fn update(&mut self, _: Self::Message) -> ShouldRender {
-    todo!()
+    false
   }
   fn change(&mut self, _: Self::Properties) -> ShouldRender {
-    todo!()
+    false
   }
   fn view(&self) -> Html {
     html! {
